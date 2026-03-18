@@ -1,434 +1,179 @@
-/* Bebop Design System - CSS Custom Properties */
-/* Converted from Swift iOS design tokens */
+/*
+ * Bebop Design System — OpenUI Theme Override
+ * Maps Bebop design tokens to OpenUI's CSS custom properties.
+ * Includes light mode (default), dark mode via media query, and .dark class.
+ */
 
+/* ============================================================
+   Light Mode (default)
+   ============================================================ */
 :root {
-  /* ═══ COLORS (Light Mode) ═══ */
+  /* --- Backgrounds --- */
+  --openui-background: #f5f5f5;
+  --openui-foreground: #ffffff;
+  --openui-sunk: rgba(0, 0, 0, 0.04);
+  --openui-highlight: rgba(0, 0, 0, 0.04);
+  --openui-highlight-subtle: rgba(0, 0, 0, 0.02);
+  --openui-highlight-strong: rgba(0, 0, 0, 0.08);
+  --openui-inverted-background: #242424;
 
-  /* Surface */
-  --surface-neutral-default: #ffffff;
-  --surface-neutral-subtle: #fcfcfc;
+  /* --- Text --- */
+  --openui-text-neutral-primary: #242424;
+  --openui-text-neutral-secondary: #5d5d5d;
+  --openui-text-neutral-tertiary: #6f6f6f;
+  --openui-text-accent-primary: #ffffff;
 
-  /* Background */
-  --bg-neutral-subtle: #f5f5f5;
-  --bg-neutral-soft: #ebebeb;
-  --bg-neutral-loud: #6f6f6f;
-  --bg-neutral-heavy: #242424;
-  --bg-brand-heavy: #242424;
-  --bg-brand-soft: #ebebeb;
-  --bg-brand-subtle: #f5f5f5;
-  --bg-danger-loud: rgb(192, 45, 86);
-  --bg-danger-soft: rgb(255, 227, 230);
-  --bg-success-loud: rgb(0, 132, 85);
-  --bg-success-soft: rgb(201, 248, 221);
-  --bg-warning-loud: rgb(187, 64, 1);
-  --bg-warning-soft: rgb(255, 229, 220);
+  /* --- Borders --- */
+  --openui-border-default: rgba(0, 0, 0, 0.06);
+  --openui-border-interactive: rgba(0, 0, 0, 0.12);
+  --openui-border-interactive-emphasis: rgba(0, 0, 0, 0.3);
+  --openui-border-interactive-selected: #242424;
+  --openui-border-accent: rgba(0, 0, 0, 0.08);
 
-  /* Foreground */
-  --fg-neutral-primary: #242424;
-  --fg-neutral-secondary: #5d5d5d;
-  --fg-neutral-tertiary: #6f6f6f;
-  --fg-neutral-disabled: #929292;
-  --fg-neutral-on-loud: #ffffff;
-  --fg-brand-primary: #242424;
-  --fg-danger-primary: rgb(166, 33, 71);
-  --fg-success-primary: rgb(1, 112, 72);
-  --fg-warning-primary: rgb(169, 57, 1);
+  /* --- Interactive / Accent --- */
+  --openui-interactive-accent-default: #242424;
+  --openui-interactive-accent-hover: rgba(36, 36, 36, 0.8);
+  --openui-interactive-accent-pressed: #242424;
+  --openui-interactive-accent-disabled: rgba(36, 36, 36, 0.4);
 
-  /* Stroke */
-  --stroke-neutral-subtle: #dedede;
-  --stroke-neutral-soft: #929292;
-  --stroke-neutral-loud: #6f6f6f;
-  --stroke-neutral-heavy: #242424;
-  --stroke-neutral-disabled: #dedede;
+  /* --- Chat --- */
+  --openui-chat-user-response-bg: #242424;
+  --openui-chat-user-response-text: #ffffff;
 
-  /* Stroke Width */
-  --stroke-thin: 1px;
-  --stroke-thick: 2px;
-  --stroke-thicker: 3px;
+  /* --- Shadows --- */
+  --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.18);
+  --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.18);
+  --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.18);
+  --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.20);
+  --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.031), 0 12px 48px rgba(0, 0, 0, 0.239);
 
-  /* ═══ TYPOGRAPHY ═══ */
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
-  --font-code: "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  /* --- Radius --- */
+  --openui-radius-3xs: 1px;
+  --openui-radius-2xs: 2px;
+  --openui-radius-xs: 4px;
+  --openui-radius-s: 6px;
+  --openui-radius-m: 8px;
+  --openui-radius-l: 10px;
+  --openui-radius-xl: 12px;
+  --openui-radius-2xl: 14px;
+  --openui-radius-3xl: 16px;
+  --openui-radius-full: 9999px;
 
-  --text-display: 600 34px/1.2 var(--font-sans);
-  --text-display-ls: 0.4px;
-  --text-h1: 600 28px/1.2 var(--font-sans);
-  --text-h1-ls: 0.38px;
-  --text-h2: 600 22px/1.2 var(--font-sans);
-  --text-h2-ls: -0.26px;
-  --text-h3: 600 20px/1.2 var(--font-sans);
-  --text-h3-ls: -0.45px;
-  --text-h4: 600 17px/1.2 var(--font-sans);
-  --text-h4-ls: -0.43px;
-  --text-body-lg: 400 17px/1.4 var(--font-sans);
-  --text-body-lg-ls: -0.43px;
-  --text-body-md: 400 15px/1.4 var(--font-sans);
-  --text-body-md-ls: -0.23px;
-  --text-body-sm: 400 13px/1.4 var(--font-sans);
-  --text-body-sm-ls: -0.08px;
-  --text-caption: 400 12px/1.3 var(--font-sans);
-  --text-caption-ls: 0px;
-  --text-code: 400 15px/1.4 var(--font-code);
-  --text-code-ls: -0.23px;
+  /* --- Spacing --- */
+  --openui-space-3xs: 2px;
+  --openui-space-2xs: 4px;
+  --openui-space-xs: 6px;
+  --openui-space-s: 8px;
+  --openui-space-s-m: 10px;
+  --openui-space-m: 12px;
+  --openui-space-l: 18px;
+  --openui-space-xl: 24px;
+  --openui-space-2xl: 36px;
+  --openui-space-000: 0px;
 
-  /* ═══ BORDER RADIUS ═══ */
-  --radius-atomic-xs: 4px;
-  --radius-atomic-sm: 8px;
-  --radius-atomic-md: 12px;
-  --radius-atomic-lg: 16px;
-  --radius-atomic-circular: 9999px;
-  --radius-composite-sm: 12px;
-  --radius-composite-md: 16px;
-  --radius-composite-lg: 24px;
-  --radius-layout-md: 12px;
+  /* --- Typography (SF Pro system font stack) --- */
+  --openui-text-body-default: 400 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --openui-text-body-default-letter-spacing: -0.23px;
+  --openui-text-body-default-heavy: 600 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --openui-text-body-default-heavy-letter-spacing: -0.23px;
+  --openui-text-body-sm: 400 13px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --openui-text-body-sm-letter-spacing: -0.08px;
+  --openui-text-heading-xs: 600 17px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --openui-text-heading-xs-letter-spacing: -0.43px;
+  --openui-text-heading-sm: 600 20px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --openui-text-heading-sm-letter-spacing: -0.45px;
+  --openui-text-label-default: 600 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --openui-text-label-default-letter-spacing: -0.23px;
+  --openui-text-label-sm: 600 13px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --openui-text-label-sm-letter-spacing: -0.08px;
 
-  /* ═══ SPACING ═══ */
-  --gap-atomic-xs: 2px;
-  --gap-atomic-sm: 4px;
-  --gap-atomic-md: 8px;
-  --gap-atomic-lg: 12px;
-  --gap-atomic-xl: 16px;
-  --gap-composite-xs: 4px;
-  --gap-composite-sm: 8px;
-  --gap-composite-md: 12px;
-  --gap-composite-lg: 16px;
-  --gap-composite-xl: 24px;
-  --gap-layout-xs: 10px;
-  --gap-layout-sm: 12px;
-  --gap-layout-md: 16px;
-  --gap-layout-lg: 24px;
-  --gap-layout-xl: 32px;
-  --padding-tight-sm: 2px;
-  --padding-tight-md: 6px;
-  --padding-tight-lg: 10px;
-  --padding-regular-sm: 4px;
-  --padding-regular-md: 8px;
-  --padding-regular-lg: 12px;
-  --padding-relaxed-xs: 16px;
-  --padding-relaxed-sm: 20px;
-  --padding-relaxed-md: 24px;
-  --padding-relaxed-lg: 32px;
-  --padding-relaxed-xl: 40px;
-
-  /* ═══ SHADOWS (Light) ═══ */
-  --shadow-subtle: 0 0.75px 3px rgba(0, 0, 0, 0.18);
-  --shadow-soft: 0 1.5px 6px rgba(0, 0, 0, 0.18);
-  --shadow-standard: 0 3px 12px rgba(0, 0, 0, 0.18);
-  --shadow-raised: 0 6px 24px rgba(0, 0, 0, 0.20);
-  --shadow-elevated: 0 0 3px rgba(0, 0, 0, 0.031), 0 12px 48px rgba(0, 0, 0, 0.239);
-  --shadow-floating: 0 0 4px rgba(0, 0, 0, 0.059), 0 24px 96px rgba(0, 0, 0, 0.361);
+  /* --- Status --- */
+  --openui-text-danger-primary: rgb(166, 33, 71);
+  --openui-text-success-primary: rgb(1, 112, 72);
+  --openui-text-info-primary: #242424;
+  --openui-text-alert-primary: rgb(169, 57, 1);
+  --openui-border-danger-emphasis: rgb(192, 45, 86);
+  --openui-border-success-emphasis: rgb(0, 132, 85);
+  --openui-border-info-emphasis: #242424;
+  --openui-border-alert-emphasis: rgb(187, 64, 1);
 }
 
-/* ═══ DARK MODE ═══ */
+/* ============================================================
+   Dark Mode — media query
+   ============================================================ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --surface-neutral-default: #242424;
-    --surface-neutral-subtle: #292929;
-    --bg-neutral-subtle: #2e2e2e;
-    --bg-neutral-soft: #3a3a3a;
-    --bg-neutral-loud: #929292;
-    --bg-neutral-heavy: #ffffff;
-    --bg-brand-heavy: #ffffff;
-    --bg-brand-soft: #3a3a3a;
-    --bg-brand-subtle: #2e2e2e;
-    --bg-danger-loud: rgb(229, 94, 122);
-    --bg-danger-soft: rgb(90, 41, 50);
-    --bg-success-loud: rgb(5, 173, 114);
-    --bg-success-soft: rgb(12, 70, 45);
-    --bg-warning-loud: rgb(229, 103, 56);
-    --bg-warning-soft: rgb(89, 44, 28);
-    --fg-neutral-primary: #dedede;
-    --fg-neutral-secondary: #aeaeae;
-    --fg-neutral-tertiary: #929292;
-    --fg-neutral-disabled: #777777;
-    --fg-neutral-on-loud: #242424;
-    --fg-brand-primary: #dedede;
-    --fg-danger-primary: rgb(253, 142, 161);
-    --fg-success-primary: rgb(93, 206, 151);
-    --fg-warning-primary: rgb(252, 149, 113);
-    --stroke-neutral-subtle: #484848;
-    --stroke-neutral-soft: #777777;
-    --stroke-neutral-loud: #929292;
-    --stroke-neutral-heavy: #dedede;
-    --stroke-neutral-disabled: #484848;
-    --shadow-subtle: 0 0.75px 3px rgba(0, 0, 0, 0.36);
-    --shadow-soft: 0 1.5px 6px rgba(0, 0, 0, 0.36);
-    --shadow-standard: 0 3px 12px rgba(0, 0, 0, 0.36);
-    --shadow-raised: 0 6px 24px rgba(0, 0, 0, 0.40);
-    --shadow-elevated: 0 0 3px rgba(0, 0, 0, 0.059), 0 12px 48px rgba(0, 0, 0, 0.478);
-    --shadow-floating: 0 0 4px rgba(0, 0, 0, 0.122), 0 24px 96px rgba(0, 0, 0, 0.722);
+    --openui-background: #2e2e2e;
+    --openui-foreground: #242424;
+    --openui-inverted-background: #ffffff;
+
+    --openui-text-neutral-primary: #dedede;
+    --openui-text-neutral-secondary: #aeaeae;
+    --openui-text-neutral-tertiary: #929292;
+    --openui-text-accent-primary: #242424;
+
+    --openui-interactive-accent-default: #ffffff;
+    --openui-interactive-accent-hover: rgba(255, 255, 255, 0.8);
+    --openui-interactive-accent-pressed: #ffffff;
+    --openui-interactive-accent-disabled: rgba(255, 255, 255, 0.4);
+
+    --openui-chat-user-response-bg: #ffffff;
+    --openui-chat-user-response-text: #242424;
+
+    --openui-border-interactive-selected: #dedede;
+
+    --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.36);
+    --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.36);
+    --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.36);
+    --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.40);
+    --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.059), 0 12px 48px rgba(0, 0, 0, 0.478);
+
+    --openui-text-danger-primary: rgb(253, 142, 161);
+    --openui-text-success-primary: rgb(93, 206, 151);
+    --openui-text-info-primary: #dedede;
+    --openui-text-alert-primary: rgb(252, 149, 113);
+    --openui-border-danger-emphasis: rgb(229, 94, 122);
+    --openui-border-success-emphasis: rgb(5, 173, 114);
+    --openui-border-info-emphasis: #dedede;
+    --openui-border-alert-emphasis: rgb(229, 103, 56);
   }
 }
 
+/* ============================================================
+   Dark Mode — .dark class (for manual toggle)
+   ============================================================ */
 .dark {
-  --surface-neutral-default: #242424;
-  --surface-neutral-subtle: #292929;
-  --bg-neutral-subtle: #2e2e2e;
-  --bg-neutral-soft: #3a3a3a;
-  --bg-neutral-loud: #929292;
-  --bg-neutral-heavy: #ffffff;
-  --bg-brand-heavy: #ffffff;
-  --bg-brand-soft: #3a3a3a;
-  --bg-brand-subtle: #2e2e2e;
-  --bg-danger-loud: rgb(229, 94, 122);
-  --bg-danger-soft: rgb(90, 41, 50);
-  --bg-success-loud: rgb(5, 173, 114);
-  --bg-success-soft: rgb(12, 70, 45);
-  --bg-warning-loud: rgb(229, 103, 56);
-  --bg-warning-soft: rgb(89, 44, 28);
-  --fg-neutral-primary: #dedede;
-  --fg-neutral-secondary: #aeaeae;
-  --fg-neutral-tertiary: #929292;
-  --fg-neutral-disabled: #777777;
-  --fg-neutral-on-loud: #242424;
-  --fg-brand-primary: #dedede;
-  --fg-danger-primary: rgb(253, 142, 161);
-  --fg-success-primary: rgb(93, 206, 151);
-  --fg-warning-primary: rgb(252, 149, 113);
-  --stroke-neutral-subtle: #484848;
-  --stroke-neutral-soft: #777777;
-  --stroke-neutral-loud: #929292;
-  --stroke-neutral-heavy: #dedede;
-  --stroke-neutral-disabled: #484848;
-  --shadow-subtle: 0 0.75px 3px rgba(0, 0, 0, 0.36);
-  --shadow-soft: 0 1.5px 6px rgba(0, 0, 0, 0.36);
-  --shadow-standard: 0 3px 12px rgba(0, 0, 0, 0.36);
-  --shadow-raised: 0 6px 24px rgba(0, 0, 0, 0.40);
-  --shadow-elevated: 0 0 3px rgba(0, 0, 0, 0.059), 0 12px 48px rgba(0, 0, 0, 0.478);
-  --shadow-floating: 0 0 4px rgba(0, 0, 0, 0.122), 0 24px 96px rgba(0, 0, 0, 0.722);
-}
+  --openui-background: #2e2e2e;
+  --openui-foreground: #242424;
+  --openui-inverted-background: #ffffff;
 
-/* ═══════════════════════════════════════════════════════
-   COMPONENT OVERRIDES - OpenUI / GenUI Components
-   ═══════════════════════════════════════════════════════ */
+  --openui-text-neutral-primary: #dedede;
+  --openui-text-neutral-secondary: #aeaeae;
+  --openui-text-neutral-tertiary: #929292;
+  --openui-text-accent-primary: #242424;
 
-/* Global base */
-html, body {
-  font-family: var(--font-sans);
-  font: var(--text-body-md);
-  letter-spacing: var(--text-body-md-ls);
-  color: var(--fg-neutral-primary);
-  background-color: var(--surface-neutral-default);
-}
+  --openui-interactive-accent-default: #ffffff;
+  --openui-interactive-accent-hover: rgba(255, 255, 255, 0.8);
+  --openui-interactive-accent-pressed: #ffffff;
+  --openui-interactive-accent-disabled: rgba(255, 255, 255, 0.4);
 
-/* ── Chat Container ── */
-[data-openui-fullscreen],
-.openui-fullscreen {
-  background-color: var(--surface-neutral-default) !important;
-  color: var(--fg-neutral-primary) !important;
-  font-family: var(--font-sans) !important;
-}
+  --openui-chat-user-response-bg: #ffffff;
+  --openui-chat-user-response-text: #242424;
 
-/* ── Chat Header / Agent Name ── */
-[data-openui-header],
-.openui-header {
-  background-color: var(--surface-neutral-default) !important;
-  border-bottom: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  color: var(--fg-neutral-primary) !important;
-}
+  --openui-border-interactive-selected: #dedede;
 
-/* ── Message Bubbles ── */
-[data-openui-message][data-role="assistant"],
-.openui-message-assistant {
-  background-color: var(--bg-neutral-subtle) !important;
-  color: var(--fg-neutral-primary) !important;
-  border-radius: var(--radius-composite-md) !important;
-  box-shadow: var(--shadow-subtle) !important;
-  border: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-}
+  --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.36);
+  --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.36);
+  --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.36);
+  --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.40);
+  --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.059), 0 12px 48px rgba(0, 0, 0, 0.478);
 
-[data-openui-message][data-role="user"],
-.openui-message-user {
-  background-color: var(--bg-neutral-heavy) !important;
-  color: var(--fg-neutral-on-loud) !important;
-  border-radius: var(--radius-composite-md) !important;
-}
-
-/* ── Input Area ── */
-[data-openui-input],
-.openui-input,
-[data-openui-composer],
-.openui-composer {
-  background-color: var(--surface-neutral-subtle) !important;
-  border: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  border-radius: var(--radius-composite-md) !important;
-  color: var(--fg-neutral-primary) !important;
-  font-family: var(--font-sans) !important;
-  font-size: 15px !important;
-  letter-spacing: var(--text-body-md-ls) !important;
-}
-
-[data-openui-input]:focus,
-.openui-input:focus,
-[data-openui-composer]:focus-within,
-.openui-composer:focus-within {
-  border-color: var(--stroke-neutral-soft) !important;
-  box-shadow: var(--shadow-soft) !important;
-  outline: none !important;
-}
-
-[data-openui-input]::placeholder,
-.openui-input::placeholder {
-  color: var(--fg-neutral-tertiary) !important;
-}
-
-/* ── Buttons ── */
-[data-openui-button],
-.openui-button,
-button[class*="openui"] {
-  font-family: var(--font-sans) !important;
-  border-radius: var(--radius-atomic-sm) !important;
-  transition: all 0.15s ease !important;
-}
-
-[data-openui-button-primary],
-.openui-button-primary {
-  background-color: var(--bg-brand-heavy) !important;
-  color: var(--fg-neutral-on-loud) !important;
-  border: none !important;
-  border-radius: var(--radius-atomic-sm) !important;
-  box-shadow: var(--shadow-subtle) !important;
-}
-
-[data-openui-button-primary]:hover,
-.openui-button-primary:hover {
-  box-shadow: var(--shadow-soft) !important;
-  opacity: 0.9;
-}
-
-/* ── Cards (GenUI components) ── */
-[data-openui-card],
-.openui-card,
-[data-genui-card] {
-  background-color: var(--surface-neutral-subtle) !important;
-  border: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  border-radius: var(--radius-composite-md) !important;
-  box-shadow: var(--shadow-subtle) !important;
-  color: var(--fg-neutral-primary) !important;
-  padding: var(--padding-regular-lg) !important;
-}
-
-/* ── Tables ── */
-[data-openui-table],
-.openui-table,
-table[class*="openui"],
-[data-genui-table] {
-  border-radius: var(--radius-composite-sm) !important;
-  overflow: hidden !important;
-  border: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  font-family: var(--font-sans) !important;
-}
-
-[data-openui-table] th,
-.openui-table th,
-[data-genui-table] th {
-  background-color: var(--bg-neutral-subtle) !important;
-  color: var(--fg-neutral-secondary) !important;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  letter-spacing: var(--text-body-sm-ls) !important;
-  padding: var(--padding-regular-md) var(--padding-regular-lg) !important;
-  border-bottom: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-}
-
-[data-openui-table] td,
-.openui-table td,
-[data-genui-table] td {
-  padding: var(--padding-regular-md) var(--padding-regular-lg) !important;
-  border-bottom: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  color: var(--fg-neutral-primary) !important;
-  font-size: 15px !important;
-}
-
-[data-openui-table] tr:last-child td,
-.openui-table tr:last-child td {
-  border-bottom: none !important;
-}
-
-/* ── Charts ── */
-[data-openui-chart],
-.openui-chart,
-[data-genui-chart] {
-  background-color: var(--surface-neutral-subtle) !important;
-  border: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  border-radius: var(--radius-composite-md) !important;
-  padding: var(--padding-regular-lg) !important;
-  box-shadow: var(--shadow-subtle) !important;
-}
-
-/* ── Code Blocks ── */
-[data-openui-code],
-.openui-code,
-pre, code {
-  font-family: var(--font-code) !important;
-  font-size: 15px !important;
-  letter-spacing: var(--text-code-ls) !important;
-  line-height: 1.4 !important;
-}
-
-pre {
-  background-color: var(--bg-neutral-subtle) !important;
-  border: var(--stroke-thin) solid var(--stroke-neutral-subtle) !important;
-  border-radius: var(--radius-atomic-md) !important;
-  padding: var(--padding-regular-lg) !important;
-}
-
-/* ── Scrollbar (subtle) ── */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--stroke-neutral-subtle);
-  border-radius: var(--radius-atomic-circular);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--stroke-neutral-soft);
-}
-
-/* ── Typography Headings ── */
-h1 {
-  font: var(--text-h1) !important;
-  letter-spacing: var(--text-h1-ls) !important;
-  color: var(--fg-neutral-primary) !important;
-}
-
-h2 {
-  font: var(--text-h2) !important;
-  letter-spacing: var(--text-h2-ls) !important;
-  color: var(--fg-neutral-primary) !important;
-}
-
-h3 {
-  font: var(--text-h3) !important;
-  letter-spacing: var(--text-h3-ls) !important;
-  color: var(--fg-neutral-primary) !important;
-}
-
-h4 {
-  font: var(--text-h4) !important;
-  letter-spacing: var(--text-h4-ls) !important;
-  color: var(--fg-neutral-primary) !important;
-}
-
-/* ── Links ── */
-a {
-  color: var(--fg-brand-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ── Selection ── */
-::selection {
-  background-color: var(--bg-neutral-soft);
-  color: var(--fg-neutral-primary);
+  --openui-text-danger-primary: rgb(253, 142, 161);
+  --openui-text-success-primary: rgb(93, 206, 151);
+  --openui-text-info-primary: #dedede;
+  --openui-text-alert-primary: rgb(252, 149, 113);
+  --openui-border-danger-emphasis: rgb(229, 94, 122);
+  --openui-border-success-emphasis: rgb(5, 173, 114);
+  --openui-border-info-emphasis: #dedede;
+  --openui-border-alert-emphasis: rgb(229, 103, 56);
 }
