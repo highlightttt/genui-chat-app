@@ -1,6 +1,7 @@
 "use client";
 import "@openuidev/react-ui/components.css";
 import "@openuidev/react-ui/styles/index.css";
+import "./bebop-theme.css";
 
 import { openAIMessageFormat, openAIReadableStreamAdapter } from "@openuidev/react-headless";
 import { FullScreen } from "@openuidev/react-ui";
@@ -25,7 +26,7 @@ export default function Home() {
         }}
         streamProtocol={openAIReadableStreamAdapter()}
         componentLibrary={openuiLibrary}
-        agentName="OpenUI Chat"
+        agentName="MAI Chat"
       />
     </div>
   );

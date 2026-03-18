@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OpenUI Chat",
-  description: "Generative UI Chat with OpenAI SDK",
+  title: "MAI Chat",
+  description: "MAI Chat — Generative UI powered by Bebop design system",
 };
 
 export default function RootLayout({
