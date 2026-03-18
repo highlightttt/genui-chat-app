@@ -26,7 +26,7 @@ export default function Home() {
         }}
         streamProtocol={openAIReadableStreamAdapter()}
         componentLibrary={openuiLibrary}
-        agentName="MAI Chat"
+        agentName="Bebop Chat"
       />
     </div>
   );
