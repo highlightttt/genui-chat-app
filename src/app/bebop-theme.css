@@ -122,19 +122,48 @@ body {
   border-style: solid !important;
 }
 
-/* Conversation starter cards — M365 white cards with shadow */
+/* Conversation starters — M365 3-column equal-height cards */
+.openui-shell-conversation-starter--short,
+.openui-shell-welcome-screen__desktop-starters .openui-shell-conversation-starter--short {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+  justify-content: stretch !important;
+  flex-wrap: nowrap !important;
+}
+
 .openui-shell-conversation-starter-item-short {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 16px !important;
   background: #ffffff !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: 12px !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-  padding: 12px 16px !important;
-  min-width: 200px !important;
   white-space: normal !important;
+  text-align: left !important;
+  min-height: 90px !important;
 }
 .openui-shell-conversation-starter-item-short:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Icon sits on top in its own row */
+.openui-shell-conversation-starter-item-short__icon {
+  order: -1 !important;
+  font-size: 20px !important;
+}
+
+/* Text wraps naturally */
+.openui-shell-conversation-starter-item-short__text {
+  white-space: normal !important;
+  line-height: 1.4 !important;
+  font-size: 13px !important;
 }
 
 textarea[data-openui-input],

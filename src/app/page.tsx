@@ -145,14 +145,17 @@ export default function Home() {
             {
               displayText: "Recap Monthly Studio 8 UX Friday & All Hands",
               prompt: "Give me a recap of our monthly UX Friday and All Hands meeting",
+              icon: <span style={{ fontSize: 20 }}>📋</span>,
             },
             {
               displayText: "Summarize recent emails from my team",
               prompt: "Summarize the most important recent emails from my team",
+              icon: <span style={{ fontSize: 20 }}>📧</span>,
             },
             {
               displayText: "Rewrite this content to be more professional and concise",
               prompt: "Help me rewrite content to be more professional and concise",
+              icon: <span style={{ fontSize: 20 }}>✏️</span>,
             },
           ],
         }}
