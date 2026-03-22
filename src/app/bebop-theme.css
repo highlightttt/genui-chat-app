@@ -184,7 +184,7 @@ textarea[data-openui-input]::placeholder,
 .openui-shell-thread-composer .openui-icon-button,
 .openui-shell-desktop-welcome-composer .openui-icon-button {
   border-radius: 50% !important;
-  background-color: #4F52B2 !important;
+  background-color: #464FEB !important;
   color: #ffffff !important;
   border: none !important;
   width: 36px !important;
@@ -193,7 +193,7 @@ textarea[data-openui-input]::placeholder,
 }
 .openui-shell-thread-composer .openui-icon-button:hover,
 .openui-shell-desktop-welcome-composer .openui-icon-button:hover {
-  background-color: #3F42A2 !important;
+  background-color: #3A42D4 !important;
 }
 
 /* Composer input wrapper — M365 rounded card style */
