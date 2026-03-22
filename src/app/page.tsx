@@ -20,7 +20,7 @@ import { PeopleBlock } from "@/components/PeopleBlock";
 import { Metric, PullQuote } from "@/components/Highlights";
 import { Timeline } from "@/components/Timeline";
 
-// Extend OpenUI with custom Bebop components (keep ALL built-in components intact)
+// Extend OpenUI with custom Bebop components
 const bebopLibrary = createLibrary({
   root: "Stack",
   componentGroups: [
@@ -52,9 +52,7 @@ const bebopLibrary = createLibrary({
     },
   ],
   components: [
-    // ALL original OpenUI components
     ...Object.values(openuiLibrary.components),
-    // Custom Bebop components
     PeopleBlock,
     Metric,
     PullQuote,
@@ -90,6 +88,35 @@ tl = Timeline([TimelineEvent("2020", "Azure reaches ~20% share", "Doubling from 
   ],
 });
 
+// M365-style welcome component
+function M365Welcome() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 8,
+        padding: "0 24px",
+      }}
+    >
+      <h1
+        style={{
+          font: "var(--openui-text-heading-sm)",
+          letterSpacing: "var(--openui-text-heading-sm-letter-spacing)",
+          color: "var(--openui-text-neutral-primary)",
+          fontWeight: 400,
+          fontSize: 28,
+          margin: 0,
+        }}
+      >
+        Hi, how can I help you?
+      </h1>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="h-screen w-screen overflow-hidden">
@@ -107,7 +134,25 @@ export default function Home() {
         }}
         streamProtocol={openAIReadableStreamAdapter()}
         componentLibrary={bebopLibrary}
-        agentName="Bebop Chat"
+        agentName="Bebop"
+        welcomeMessage={M365Welcome}
+        conversationStarters={{
+          variant: "long",
+          options: [
+            {
+              displayText: "Recap Monthly Studio 8 UX Friday & All Hands",
+              prompt: "Give me a recap of our monthly UX Friday and All Hands meeting",
+            },
+            {
+              displayText: "Summarize recent emails from my team",
+              prompt: "Summarize the most important recent emails from my team",
+            },
+            {
+              displayText: "Rewrite this content to be more professional and concise",
+              prompt: "Help me rewrite content to be more professional and concise",
+            },
+          ],
+        }}
       />
     </div>
   );
