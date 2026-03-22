@@ -25,9 +25,8 @@ const PeopleBlockSchema = z.object({
 
 type Person = z.infer<typeof PersonSchema>;
 
-function getAvatarUrl(name: string, providedUrl?: string, size = 128): string {
-  if (providedUrl && !providedUrl.includes("undefined")) return providedUrl;
-  // Use randomuser.me portraits — deterministic by hashing name to a number 0-99
+function getAvatarUrl(name: string): string {
+  // Always use randomuser.me portraits — deterministic by hashing name
   let hash = 0;
   for (let i = 0; i < name.length; i++) hash = ((hash << 5) - hash + name.charCodeAt(i)) | 0;
   const num = Math.abs(hash) % 100;
@@ -119,7 +118,7 @@ function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () =>
           position: "relative",
         }}>
           <img
-            src={getAvatarUrl(person.name, person.avatarUrl, 256)}
+            src={getAvatarUrl(person.name)}
             alt={person.name}
             style={{
               width: 120,
@@ -156,7 +155,7 @@ function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () =>
               </h3>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <img
-                  src={getAvatarUrl(person.reportsTo, person.reportsToAvatarUrl, 80)}
+                  src={getAvatarUrl(person.reportsTo)}
                   alt={person.reportsTo}
                   style={{
                     width: 40,
@@ -222,7 +221,7 @@ function PersonCard({ person }: { person: Person }) {
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
       >
         <img
-          src={getAvatarUrl(person.name, person.avatarUrl, 80)}
+          src={getAvatarUrl(person.name)}
           alt={person.name}
           style={{
             width: 40,
