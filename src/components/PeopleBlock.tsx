@@ -1,7 +1,7 @@
 "use client";
 import { defineComponent } from "@openuidev/react-lang";
 import { z } from "zod";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useState, useEffect } from "react";
 
 const PersonSchema = z.object({
   name: z.string(),
@@ -25,41 +25,67 @@ const PeopleBlockSchema = z.object({
 
 type Person = z.infer<typeof PersonSchema>;
 
-function PersonModal({ person, onClose }: { person: Person; onClose: () => void }) {
+function getAvatarUrl(name: string, providedUrl?: string, size = 128): string {
+  if (providedUrl && !providedUrl.includes("undefined")) return providedUrl;
+  // Use DiceBear avatars as placeholders — deterministic by name
+  return `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=e0e0e0&textColor=616161&fontSize=36&size=${size}`;
+}
+
+function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () => void }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger slide-up animation
+    requestAnimationFrame(() => setVisible(true));
+    // Prevent body scroll
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  const handleClose = () => {
+    setVisible(false);
+    setTimeout(onClose, 300);
+  };
+
   return (
     <div
-      onClick={onClose}
+      onClick={handleClose}
       style={{
         position: "fixed",
         inset: 0,
-        background: "rgba(0,0,0,0.4)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        background: visible ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,0)",
+        transition: "background 0.3s ease",
         zIndex: 9999,
-        padding: 24,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
       }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "#ffffff",
-          borderRadius: 16,
-          maxWidth: 420,
-          width: "100%",
-          maxHeight: "80vh",
+          borderRadius: "20px 20px 0 0",
+          maxHeight: "75vh",
           overflow: "auto",
-          boxShadow: "0 12px 48px rgba(0,0,0,0.15)",
+          boxShadow: "0 -4px 24px rgba(0,0,0,0.12)",
+          transform: visible ? "translateY(0)" : "translateY(100%)",
+          transition: "transform 0.3s cubic-bezier(0.32, 0.72, 0, 1)",
           position: "relative",
         }}
       >
+        {/* Drag handle */}
+        <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 4px" }}>
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "#e0e0e0" }} />
+        </div>
+
         {/* Close button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           style={{
             position: "absolute",
-            top: 12,
-            right: 12,
+            top: 14,
+            right: 16,
             background: "rgba(0,0,0,0.06)",
             border: "none",
             borderRadius: "50%",
@@ -69,7 +95,7 @@ function PersonModal({ person, onClose }: { person: Person; onClose: () => void 
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 18,
+            fontSize: 16,
             color: "#616161",
             zIndex: 1,
           }}
@@ -77,73 +103,74 @@ function PersonModal({ person, onClose }: { person: Person; onClose: () => void 
           ✕
         </button>
 
-        {/* Header with avatar */}
-        <div style={{ padding: "32px 24px 0", textAlign: "center" }}>
-          <div
+        {/* Cover / Hero image area */}
+        <div style={{
+          width: "100%",
+          height: 180,
+          background: "linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 50%, #fce4ec 100%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          position: "relative",
+        }}>
+          <img
+            src={getAvatarUrl(person.name, person.avatarUrl, 256)}
+            alt={person.name}
             style={{
-              width: 80,
-              height: 80,
+              width: 120,
+              height: 120,
               borderRadius: "50%",
-              background: "#f0f0f0",
-              border: "2px solid rgba(0,0,0,0.06)",
-              margin: "0 auto 16px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              overflow: "hidden",
-              fontSize: 28,
-              color: "#616161",
-              fontWeight: 300,
+              objectFit: "cover",
+              border: "4px solid #ffffff",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
             }}
-          >
-            {person.avatarUrl ? (
-              <img src={person.avatarUrl} alt={person.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            ) : (
-              person.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
-            )}
-          </div>
-          <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, color: "#242424" }}>{person.name}</h2>
-          <p style={{ margin: "4px 0 0", fontSize: 14, color: "#616161" }}>{person.role}</p>
+          />
         </div>
 
         {/* Content */}
-        <div style={{ padding: "20px 24px 24px" }}>
-          {/* Bio / Description */}
+        <div style={{ padding: "20px 24px 32px" }}>
+          <h2 style={{ margin: 0, fontSize: 24, fontWeight: 600, color: "#242424" }}>
+            {person.name}
+          </h2>
+          <p style={{ margin: "4px 0 0", fontSize: 14, color: "#616161" }}>
+            {person.role}
+          </p>
+
+          {/* Bio */}
           {(person.bio || person.description) && (
-            <p style={{ margin: "0 0 20px", fontSize: 14, lineHeight: 1.6, color: "#242424" }}>
+            <p style={{ margin: "16px 0 0", fontSize: 14, lineHeight: 1.7, color: "#242424" }}>
               {person.bio || person.description}
             </p>
           )}
 
           {/* Reports to */}
           {person.reportsTo && (
-            <div style={{ marginBottom: 20 }}>
-              <h3 style={{ margin: "0 0 10px", fontSize: 16, fontWeight: 600, color: "#242424" }}>Reports to</h3>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div
+            <div style={{ marginTop: 24 }}>
+              <h3 style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 600, color: "#242424" }}>
+                Reports to
+              </h3>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <img
+                  src={getAvatarUrl(person.reportsTo, person.reportsToAvatarUrl, 80)}
+                  alt={person.reportsTo}
                   style={{
-                    width: 36,
-                    height: 36,
+                    width: 40,
+                    height: 40,
                     borderRadius: "50%",
-                    background: "#f0f0f0",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                    fontSize: 14,
-                    color: "#616161",
+                    objectFit: "cover",
                     flexShrink: 0,
                   }}
-                >
-                  {person.reportsToAvatarUrl ? (
-                    <img src={person.reportsToAvatarUrl} alt={person.reportsTo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  ) : (
-                    person.reportsTo.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
-                  )}
-                </div>
+                />
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: "#242424" }}>{person.reportsTo}</div>
-                  {person.reportsToRole && <div style={{ fontSize: 12, color: "#616161" }}>{person.reportsToRole}</div>}
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#242424" }}>
+                    {person.reportsTo}
+                  </div>
+                  {person.reportsToRole && (
+                    <div style={{ fontSize: 12, color: "#616161" }}>
+                      {person.reportsToRole}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -151,11 +178,13 @@ function PersonModal({ person, onClose }: { person: Person; onClose: () => void 
 
           {/* Key Projects */}
           {person.projects && person.projects.length > 0 && (
-            <div>
-              <h3 style={{ margin: "0 0 10px", fontSize: 16, fontWeight: 600, color: "#242424" }}>Key Projects</h3>
-              <ul style={{ margin: 0, padding: "0 0 0 18px", listStyle: "disc" }}>
+            <div style={{ marginTop: 24 }}>
+              <h3 style={{ margin: "0 0 12px", fontSize: 16, fontWeight: 600, color: "#242424" }}>
+                Key Projects
+              </h3>
+              <ul style={{ margin: 0, padding: "0 0 0 20px", listStyle: "disc" }}>
                 {person.projects.map((p, i) => (
-                  <li key={i} style={{ fontSize: 14, lineHeight: 1.6, color: "#242424", marginBottom: 6 }}>
+                  <li key={i} style={{ fontSize: 14, lineHeight: 1.7, color: "#242424", marginBottom: 8 }}>
                     <strong>{p.name}</strong>
                     {p.description && <span> — {p.description}</span>}
                   </li>
@@ -170,17 +199,17 @@ function PersonModal({ person, onClose }: { person: Person; onClose: () => void 
 }
 
 function PersonCard({ person }: { person: Person }) {
-  const [showModal, setShowModal] = useState(false);
+  const [showPanel, setShowPanel] = useState(false);
 
   return (
     <>
       <div
-        onClick={() => setShowModal(true)}
+        onClick={() => setShowPanel(true)}
         style={{
           display: "flex",
-          gap: "var(--openui-space-m)",
+          gap: 12,
           alignItems: "flex-start",
-          padding: "var(--openui-space-m) 0",
+          padding: "10px 4px",
           cursor: "pointer",
           borderRadius: 8,
           transition: "background 0.15s ease",
@@ -188,28 +217,17 @@ function PersonCard({ person }: { person: Person }) {
         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.03)"; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
       >
-        <div
+        <img
+          src={getAvatarUrl(person.name, person.avatarUrl, 80)}
+          alt={person.name}
           style={{
             width: 40,
             height: 40,
-            borderRadius: "var(--openui-radius-full)",
-            background: "var(--openui-sunk)",
-            border: "1px solid var(--openui-border-default)",
+            borderRadius: "50%",
+            objectFit: "cover",
             flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-            font: "var(--openui-text-body-sm)",
-            color: "var(--openui-text-neutral-secondary)",
           }}
-        >
-          {person.avatarUrl ? (
-            <img src={person.avatarUrl} alt={person.name} style={{ width: "100%", height: "100%", objectFit: "cover" as const }} />
-          ) : (
-            person.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
-          )}
-        </div>
+        />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div
             style={{
@@ -238,7 +256,7 @@ function PersonCard({ person }: { person: Person }) {
                 font: "var(--openui-text-body-sm)",
                 letterSpacing: "var(--openui-text-body-sm-letter-spacing)",
                 color: "var(--openui-text-neutral-tertiary)",
-                marginTop: "var(--openui-space-2xs)",
+                marginTop: 2,
               }}
             >
               {person.description}
@@ -246,7 +264,7 @@ function PersonCard({ person }: { person: Person }) {
           )}
         </div>
       </div>
-      {showModal && <PersonModal person={person} onClose={() => setShowModal(false)} />}
+      {showPanel && <PersonBottomSheet person={person} onClose={() => setShowPanel(false)} />}
     </>
   );
 }
@@ -255,23 +273,16 @@ export const PeopleBlock = defineComponent({
   name: "PeopleBlock",
   props: PeopleBlockSchema,
   description:
-    'People block — surfaces key individuals with avatar, name, role, and optional description. groupLabel is an optional section header like "Design Lead". Optional fields: bio (detailed bio shown in modal), reportsTo/reportsToRole (manager info), projects (array of {name, description} for key projects). Click a person to see their full profile.',
+    'People block — surfaces key individuals with avatar, name, role, and optional description. groupLabel is an optional section header like "Design Lead". Optional fields: bio (detailed bio shown in profile panel), reportsTo/reportsToRole (manager info), projects (array of {name, description} for key projects). Click a person to see their full profile in a slide-up panel.',
   component: ({ props }: { props: z.infer<typeof PeopleBlockSchema>; renderNode: (v: unknown) => ReactNode }) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column" as const,
-        gap: 0,
-        width: "100%",
-      }}
-    >
+    <div style={{ display: "flex", flexDirection: "column" as const, gap: 0, width: "100%" }}>
       {props.groupLabel && (
         <div
           style={{
             font: "var(--openui-text-heading-xs)",
             letterSpacing: "var(--openui-text-heading-xs-letter-spacing)",
             color: "var(--openui-text-neutral-primary)",
-            paddingBottom: "var(--openui-space-xs)",
+            paddingBottom: 8,
           }}
         >
           {props.groupLabel}
