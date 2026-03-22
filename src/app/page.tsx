@@ -8,25 +8,37 @@ import {
   openAIReadableStreamAdapter,
 } from "@openuidev/react-headless";
 import { FullScreen } from "@openuidev/react-ui";
-import {
-  openuiLibrary,
-  openuiPromptOptions,
-  openuiComponentGroups,
-  openuiExamples,
-  openuiAdditionalRules,
-} from "@openuidev/react-ui/genui-lib";
 import { createLibrary } from "@openuidev/react-lang";
+
+// Minimal set of OpenUI primitives needed for layout/text
+import { openuiLibrary } from "@openuidev/react-ui/genui-lib";
+const Stack = openuiLibrary.components["Stack"];
+const TextContent = openuiLibrary.components["TextContent"];
+const Card = openuiLibrary.components["Card"];
+const CardHeader = openuiLibrary.components["CardHeader"];
+const Separator = openuiLibrary.components["Separator"];
+const MarkDownRenderer = openuiLibrary.components["MarkDownRenderer"];
 
 // Custom Bebop components
 import { PeopleBlock } from "@/components/PeopleBlock";
 import { Metric, PullQuote } from "@/components/Highlights";
 import { Timeline } from "@/components/Timeline";
 
-// Extend the library with custom components
 const bebopLibrary = createLibrary({
   root: "Stack",
   componentGroups: [
-    ...openuiComponentGroups,
+    {
+      name: "Layout",
+      components: ["Stack", "Card", "CardHeader", "Separator"],
+      notes: [
+        'Stack is the root layout. Use direction "row" for horizontal, "column" (default) for vertical.',
+        'Card wraps content in a styled container. variant: "card" | "sunk" | "clear".',
+      ],
+    },
+    {
+      name: "Content",
+      components: ["TextContent", "MarkDownRenderer"],
+    },
     {
       name: "People",
       components: ["PeopleBlock"],
@@ -49,13 +61,18 @@ const bebopLibrary = createLibrary({
       components: ["Timeline"],
       notes: [
         "Timeline: chronological view with a vertical line and dots.",
-        'Each event has marker (year/date), title, and optional description.',
+        "Each event has marker (year/date), title, and optional description.",
       ],
     },
   ],
   components: [
-    // All original OpenUI components
-    ...Object.values(openuiLibrary.components),
+    // Minimal OpenUI primitives
+    Stack,
+    TextContent,
+    Card,
+    CardHeader,
+    Separator,
+    MarkDownRenderer,
     // Custom Bebop components
     PeopleBlock,
     Metric,
@@ -65,7 +82,6 @@ const bebopLibrary = createLibrary({
 });
 
 const bebopExamples = [
-  ...openuiExamples,
   `Example — People block:
 root = Stack([heading, lead, designers])
 heading = TextContent("Design Team", "large-heavy")
@@ -87,9 +103,9 @@ tl = Timeline([TimelineEvent("2020", "Azure reaches ~20% share", "Doubling from 
 const systemPrompt = bebopLibrary.prompt({
   examples: bebopExamples,
   additionalRules: [
-    ...openuiAdditionalRules,
-    "Use PeopleBlock when the response involves people, teams, or org structures. Group by role when appropriate.",
-    "Use Metric for key statistics and PullQuote for impactful quotes in reports or summaries.",
+    'For grid-like layouts, use Stack with direction "row" and wrap=true.',
+    "Use PeopleBlock when the response involves people, teams, or org structures.",
+    "Use Metric for key statistics and PullQuote for impactful quotes.",
     "Use Timeline for chronological events, histories, or milestones.",
   ],
 });
