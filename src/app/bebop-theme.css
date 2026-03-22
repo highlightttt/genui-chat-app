@@ -179,6 +179,8 @@ textarea[data-openui-input],
   color: #242424 !important;
 }
 textarea[data-openui-input]::placeholder,
-.openui-input::placeholder {
+.openui-input::placeholder,
+.openui-shell-thread-composer__input::placeholder,
+.openui-shell-desktop-welcome-composer__input::placeholder {
   color: #8a8a8a !important;
 }

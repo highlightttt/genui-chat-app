@@ -144,17 +144,17 @@ export default function Home() {
           options: [
             {
               displayText: "Recap Monthly Studio 8 UX Friday & All Hands",
-              prompt: "Give me a recap of our monthly UX Friday and All Hands meeting",
+              prompt: "Recap Monthly Studio 8 UX Friday & All Hands from recent meetings",
               icon: <span style={{ fontSize: 20 }}>📋</span>,
             },
             {
-              displayText: "Summarize recent emails from my team",
-              prompt: "Summarize the most important recent emails from my team",
-              icon: <span style={{ fontSize: 20 }}>📧</span>,
+              displayText: "Emails from Candice Li (Shanghai Wicresoft Co Ltd)...",
+              prompt: "Show me recent emails from Candice Li at Shanghai Wicresoft Co Ltd",
+              icon: <span style={{ fontSize: 20 }}>🐸</span>,
             },
             {
-              displayText: "Rewrite this content to be more professional and concise",
-              prompt: "Help me rewrite content to be more professional and concise",
+              displayText: "Rewrite this content to make it more professional and concise: Text",
+              prompt: "Rewrite this content to make it more professional and concise",
               icon: <span style={{ fontSize: 20 }}>✏️</span>,
             },
           ],
