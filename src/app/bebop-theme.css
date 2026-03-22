@@ -184,3 +184,21 @@ textarea[data-openui-input]::placeholder,
 .openui-shell-desktop-welcome-composer__input::placeholder {
   color: #8a8a8a !important;
 }
+
+/* === Direct style overrides (CSS vars alone don't override oklch fallbacks) === */
+
+/* Main background — white */
+.openui-shell-container {
+  background: #ffffff !important;
+}
+
+/* User message bubble — light grey */
+.openui-shell-thread-message-user__content {
+  background-color: #F0F0F0 !important;
+  color: #242424 !important;
+}
+
+/* Sidebar background */
+.openui-shell-sidebar-container {
+  background: #ffffff !important;
+}
