@@ -134,7 +134,7 @@ export default function Home() {
         }}
         streamProtocol={openAIReadableStreamAdapter()}
         componentLibrary={bebopLibrary}
-        agentName="Bebop"
+        agentName="Baby M365"
         logoUrl="/copilot-logo.svg"
         welcomeMessage={{
           title: "Hi, how can I help you?",
