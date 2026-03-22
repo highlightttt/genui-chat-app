@@ -3,11 +3,96 @@ import "@openuidev/react-ui/components.css";
 import "@openuidev/react-ui/styles/index.css";
 import "./bebop-theme.css";
 
-import { openAIMessageFormat, openAIReadableStreamAdapter } from "@openuidev/react-headless";
+import {
+  openAIMessageFormat,
+  openAIReadableStreamAdapter,
+} from "@openuidev/react-headless";
 import { FullScreen } from "@openuidev/react-ui";
-import { openuiLibrary, openuiPromptOptions } from "@openuidev/react-ui/genui-lib";
+import {
+  openuiLibrary,
+  openuiPromptOptions,
+  openuiComponentGroups,
+  openuiExamples,
+  openuiAdditionalRules,
+} from "@openuidev/react-ui/genui-lib";
+import { createLibrary } from "@openuidev/react-lang";
 
-const systemPrompt = openuiLibrary.prompt(openuiPromptOptions);
+// Custom Bebop components
+import { PeopleBlock } from "@/components/PeopleBlock";
+import { Metric, PullQuote } from "@/components/Highlights";
+import { Timeline } from "@/components/Timeline";
+
+// Extend the library with custom components
+const bebopLibrary = createLibrary({
+  root: "Stack",
+  componentGroups: [
+    ...openuiComponentGroups,
+    {
+      name: "People",
+      components: ["PeopleBlock"],
+      notes: [
+        "Use PeopleBlock to surface team members, owners, or contacts inline.",
+        "Each person has name, role, optional description and avatarUrl.",
+        'groupLabel adds a section header like "Design Lead".',
+      ],
+    },
+    {
+      name: "Highlights",
+      components: ["Metric", "PullQuote"],
+      notes: [
+        'Metric: big number + label + optional detail. value is the headline number (e.g. "50%", "3.2M").',
+        "PullQuote: a short impactful quote visually separated with quotation marks.",
+      ],
+    },
+    {
+      name: "Timeline",
+      components: ["Timeline"],
+      notes: [
+        "Timeline: chronological view with a vertical line and dots.",
+        'Each event has marker (year/date), title, and optional description.',
+      ],
+    },
+  ],
+  components: [
+    // All original OpenUI components
+    ...Object.values(openuiLibrary.components),
+    // Custom Bebop components
+    PeopleBlock,
+    Metric,
+    PullQuote,
+    Timeline,
+  ],
+});
+
+const bebopExamples = [
+  ...openuiExamples,
+  `Example — People block:
+root = Stack([heading, lead, designers])
+heading = TextContent("Design Team", "large-heavy")
+lead = PeopleBlock([Person("Jing Guan", "Principal Design Manager", "Leads the design direction")], "Design Lead")
+designers = PeopleBlock([Person("Sylvia Kong", "Senior Designer", "Voice experience"), Person("Jane Liu", "Senior Designer", "Input experience")], "Core Designers")`,
+  `Example — Highlights with metrics and pull quote:
+root = Stack([title, quote, metrics])
+title = TextContent("Key Findings", "large-heavy")
+quote = PullQuote("AI enables faster development and richer personalization.")
+metrics = Stack([m1, m2])
+m1 = Metric("50%", "AI Adoption Growth", "One-third of teams launched AI features")
+m2 = Metric("23%", "Annual UX Growth", "Driven by AI and generative design")`,
+  `Example — Timeline:
+root = Stack([title, tl])
+title = TextContent("Cloud Market Evolution", "large-heavy")
+tl = Timeline([TimelineEvent("2020", "Azure reaches ~20% share", "Doubling from mid-2010s"), TimelineEvent("2024", "Azure and Google grow 30%+", "AWS slows to ~19%"), TimelineEvent("2025", "Cloud spend hits $99B", "Azure solidifies #2 position")])`,
+];
+
+const systemPrompt = bebopLibrary.prompt({
+  examples: bebopExamples,
+  additionalRules: [
+    ...openuiAdditionalRules,
+    "Use PeopleBlock when the response involves people, teams, or org structures. Group by role when appropriate.",
+    "Use Metric for key statistics and PullQuote for impactful quotes in reports or summaries.",
+    "Use Timeline for chronological events, histories, or milestones.",
+  ],
+});
 
 export default function Home() {
   return (
@@ -25,7 +110,7 @@ export default function Home() {
           });
         }}
         streamProtocol={openAIReadableStreamAdapter()}
-        componentLibrary={openuiLibrary}
+        componentLibrary={bebopLibrary}
         agentName="Bebop Chat"
       />
     </div>
