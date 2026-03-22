@@ -77,35 +77,6 @@ function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () =>
           position: "relative",
         }}
       >
-        {/* Drag handle */}
-        <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 4px" }}>
-          <div style={{ width: 36, height: 4, borderRadius: 2, background: "#e0e0e0" }} />
-        </div>
-
-        {/* Close button */}
-        <button
-          onClick={handleClose}
-          style={{
-            position: "absolute",
-            top: 14,
-            right: 16,
-            background: "rgba(0,0,0,0.06)",
-            border: "none",
-            borderRadius: "50%",
-            width: 32,
-            height: 32,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 16,
-            color: "#616161",
-            zIndex: 1,
-          }}
-        >
-          ✕
-        </button>
-
         {/* Cover photo — full width hero image */}
         <div style={{
           width: "100%",
@@ -124,6 +95,33 @@ function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () =>
               objectPosition: "center top",
             }}
           />
+          {/* Drag handle overlaid on image */}
+          <div style={{ position: "absolute", top: 10, left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 2 }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.6)" }} />
+          </div>
+          {/* Close button overlaid on image */}
+          <button
+            onClick={handleClose}
+            style={{
+              position: "absolute",
+              top: 10,
+              right: 12,
+              background: "rgba(0,0,0,0.3)",
+              border: "none",
+              borderRadius: "50%",
+              width: 32,
+              height: 32,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+              color: "#ffffff",
+              zIndex: 2,
+            }}
+          >
+            ✕
+          </button>
         </div>
 
         {/* Content */}
