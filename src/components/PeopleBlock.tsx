@@ -106,27 +106,22 @@ function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () =>
           ✕
         </button>
 
-        {/* Cover / Hero image area */}
+        {/* Cover photo — full width hero image */}
         <div style={{
           width: "100%",
-          height: 180,
-          background: "linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 50%, #fce4ec 100%)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          height: 280,
           overflow: "hidden",
           position: "relative",
+          borderRadius: "20px 20px 0 0",
         }}>
           <img
             src={getAvatarUrl(person.name)}
             alt={person.name}
             style={{
-              width: 120,
-              height: 120,
-              borderRadius: "50%",
+              width: "100%",
+              height: "100%",
               objectFit: "cover",
-              border: "4px solid #ffffff",
-              boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
+              objectPosition: "center top",
             }}
           />
         </div>
