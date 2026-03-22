@@ -136,7 +136,9 @@ export default function Home() {
         componentLibrary={bebopLibrary}
         agentName="Bebop"
         logoUrl="/copilot-logo.svg"
-        welcomeMessage={M365Welcome}
+        welcomeMessage={{
+          title: "Hi, how can I help you?",
+        }}
         conversationStarters={{
           variant: "short",
           options: [
