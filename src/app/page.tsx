@@ -105,8 +105,8 @@ function M365Welcome() {
         style={{
           fontFamily: '"Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
           fontWeight: 300,
-          fontSize: 28,
-          color: "var(--openui-text-neutral-primary)",
+          fontSize: 32,
+          color: "#242424",
           margin: 0,
           textAlign: "center",
         }}
@@ -138,7 +138,7 @@ export default function Home() {
         logoUrl="/copilot-logo.svg"
         welcomeMessage={M365Welcome}
         conversationStarters={{
-          variant: "long",
+          variant: "short",
           options: [
             {
               displayText: "Recap Monthly Studio 8 UX Friday & All Hands",

@@ -1,47 +1,46 @@
 /*
- * M365 Copilot-inspired theme
- * Dark gradient background with white/light text
+ * M365 Copilot-inspired theme — Light mode
  */
 
 :root {
   /* --- Backgrounds --- */
-  --openui-background: #1b1040;
-  --openui-foreground: rgba(255, 255, 255, 0.08);
-  --openui-sunk: rgba(255, 255, 255, 0.05);
-  --openui-highlight: rgba(255, 255, 255, 0.06);
-  --openui-highlight-subtle: rgba(255, 255, 255, 0.03);
-  --openui-highlight-strong: rgba(255, 255, 255, 0.1);
-  --openui-inverted-background: #ffffff;
+  --openui-background: #f5f5f5;
+  --openui-foreground: #ffffff;
+  --openui-sunk: rgba(0, 0, 0, 0.03);
+  --openui-highlight: rgba(0, 0, 0, 0.04);
+  --openui-highlight-subtle: rgba(0, 0, 0, 0.02);
+  --openui-highlight-strong: rgba(0, 0, 0, 0.06);
+  --openui-inverted-background: #1a1a1a;
 
   /* --- Text --- */
-  --openui-text-neutral-primary: #ffffff;
-  --openui-text-neutral-secondary: rgba(255, 255, 255, 0.75);
-  --openui-text-neutral-tertiary: rgba(255, 255, 255, 0.55);
-  --openui-text-accent-primary: #1b1040;
+  --openui-text-neutral-primary: #242424;
+  --openui-text-neutral-secondary: #616161;
+  --openui-text-neutral-tertiary: #8a8a8a;
+  --openui-text-accent-primary: #ffffff;
 
   /* --- Borders --- */
-  --openui-border-default: rgba(255, 255, 255, 0.08);
-  --openui-border-interactive: rgba(255, 255, 255, 0.15);
-  --openui-border-interactive-emphasis: rgba(255, 255, 255, 0.3);
-  --openui-border-interactive-selected: #ffffff;
-  --openui-border-accent: rgba(255, 255, 255, 0.1);
+  --openui-border-default: rgba(0, 0, 0, 0.06);
+  --openui-border-interactive: rgba(0, 0, 0, 0.1);
+  --openui-border-interactive-emphasis: rgba(0, 0, 0, 0.2);
+  --openui-border-interactive-selected: #242424;
+  --openui-border-accent: rgba(0, 0, 0, 0.06);
 
-  /* --- Interactive / Accent --- */
-  --openui-interactive-accent-default: #7b6fe6;
-  --openui-interactive-accent-hover: #9188ec;
-  --openui-interactive-accent-pressed: #6a5fd4;
-  --openui-interactive-accent-disabled: rgba(123, 111, 230, 0.4);
+  /* --- Interactive / Accent (M365 purple) --- */
+  --openui-interactive-accent-default: #6B4EE6;
+  --openui-interactive-accent-hover: #5B3ED6;
+  --openui-interactive-accent-pressed: #4B2EC6;
+  --openui-interactive-accent-disabled: rgba(107, 78, 230, 0.4);
 
   /* --- Chat --- */
-  --openui-chat-user-response-bg: rgba(255, 255, 255, 0.12);
+  --openui-chat-user-response-bg: #242424;
   --openui-chat-user-response-text: #ffffff;
 
   /* --- Shadows --- */
-  --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.4);
-  --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.4);
-  --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.4);
-  --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.5);
-  --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.06), 0 12px 48px rgba(0, 0, 0, 0.5);
+  --openui-shadow-s: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --openui-shadow-m: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --openui-shadow-l: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --openui-shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --openui-shadow-2xl: 0 0 2px rgba(0, 0, 0, 0.04), 0 12px 48px rgba(0, 0, 0, 0.12);
 
   /* --- Radius --- */
   --openui-radius-3xs: 2px;
@@ -67,7 +66,7 @@
   --openui-space-2xl: 36px;
   --openui-space-000: 0px;
 
-  /* --- Typography (Segoe UI → system) --- */
+  /* --- Typography (Segoe UI) --- */
   --openui-text-body-default: 400 14px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --openui-text-body-default-letter-spacing: 0;
   --openui-text-body-default-heavy: 600 14px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -84,64 +83,55 @@
   --openui-text-label-sm-letter-spacing: 0;
 
   /* --- Status --- */
-  --openui-text-danger-primary: #ff8a8a;
-  --openui-text-success-primary: #6fdc8c;
-  --openui-text-info-primary: rgba(255, 255, 255, 0.85);
-  --openui-text-alert-primary: #ffb74d;
-  --openui-border-danger-emphasis: #ff6b6b;
-  --openui-border-success-emphasis: #42be65;
-  --openui-border-info-emphasis: rgba(255, 255, 255, 0.5);
-  --openui-border-alert-emphasis: #ff9800;
+  --openui-text-danger-primary: rgb(166, 33, 71);
+  --openui-text-success-primary: rgb(1, 112, 72);
+  --openui-text-info-primary: #242424;
+  --openui-text-alert-primary: rgb(169, 57, 1);
+  --openui-border-danger-emphasis: rgb(192, 45, 86);
+  --openui-border-success-emphasis: rgb(0, 132, 85);
+  --openui-border-info-emphasis: #242424;
+  --openui-border-alert-emphasis: rgb(187, 64, 1);
 }
 
-/* Background gradient on body */
 body {
-  background: linear-gradient(160deg, #1b1040 0%, #2d1b69 35%, #1a237e 65%, #0d1b3e 100%) !important;
-  min-height: 100vh;
+  background: #f5f5f5 !important;
 }
 
-/* Override OpenUI shell background to transparent so gradient shows through */
-[data-openui-shell],
-[data-openui-chat],
-.openui-shell,
-.openui-chat {
-  background: transparent !important;
-}
-
-/* Conversation starter cards — M365 style */
+/* Conversation starter cards — M365 horizontal cards */
 [data-openui-conversation-starter],
 .openui-conversation-starter {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: 12px !important;
-  backdrop-filter: blur(20px);
-  transition: background 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 [data-openui-conversation-starter]:hover,
 .openui-conversation-starter:hover {
-  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Input bar — frosted glass */
+/* Composer — M365 rounded input with subtle dashed border */
 [data-openui-composer],
-.openui-composer,
+.openui-composer {
+  background: #ffffff !important;
+  border: 1.5px dashed rgba(0, 0, 0, 0.15) !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+[data-openui-composer]:focus-within {
+  border-color: #6B4EE6 !important;
+  border-style: solid !important;
+}
+
 textarea[data-openui-input],
 .openui-input {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 24px !important;
-  color: #ffffff !important;
-  backdrop-filter: blur(20px);
+  background: transparent !important;
+  border: none !important;
+  color: #242424 !important;
 }
-[data-openui-composer]::placeholder,
 textarea[data-openui-input]::placeholder,
 .openui-input::placeholder {
-  color: rgba(255, 255, 255, 0.45) !important;
-}
-
-/* Assistant message cards */
-[data-openui-assistant-message] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #8a8a8a !important;
 }
