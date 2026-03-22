@@ -88,6 +88,24 @@ tl = Timeline([TimelineEvent("2020", "Azure reaches ~20% share", "Doubling from 
   ],
 });
 
+// M365 Copilot sparkle icon
+function CopilotIcon() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 28 28" fill="none">
+      <path
+        d="M14 2L16.2 9.8L24 12L16.2 14.2L14 22L11.8 14.2L4 12L11.8 9.8L14 2Z"
+        fill="url(#sparkle-gradient)"
+      />
+      <defs>
+        <linearGradient id="sparkle-gradient" x1="4" y1="2" x2="24" y2="22" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#B4A0FF" />
+          <stop offset="1" stopColor="#6DD6FF" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 // M365-style welcome component
 function M365Welcome() {
   return (
@@ -97,18 +115,19 @@ function M365Welcome() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: 8,
+        gap: 16,
         padding: "0 24px",
       }}
     >
+      <CopilotIcon />
       <h1
         style={{
-          font: "var(--openui-text-heading-sm)",
-          letterSpacing: "var(--openui-text-heading-sm-letter-spacing)",
-          color: "var(--openui-text-neutral-primary)",
-          fontWeight: 400,
+          fontFamily: '"Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+          fontWeight: 300,
           fontSize: 28,
+          color: "#ffffff",
           margin: 0,
+          textAlign: "center",
         }}
       >
         Hi, how can I help you?

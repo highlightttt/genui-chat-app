@@ -1,62 +1,58 @@
 /*
- * Bebop Design System — OpenUI Theme Override
- * Maps Bebop design tokens to OpenUI's CSS custom properties.
- * Includes light mode (default), dark mode via media query, and .dark class.
+ * M365 Copilot-inspired theme
+ * Dark gradient background with white/light text
  */
 
-/* ============================================================
-   Light Mode (default)
-   ============================================================ */
 :root {
   /* --- Backgrounds --- */
-  --openui-background: #f5f5f5;
-  --openui-foreground: #ffffff;
-  --openui-sunk: rgba(0, 0, 0, 0.04);
-  --openui-highlight: rgba(0, 0, 0, 0.04);
-  --openui-highlight-subtle: rgba(0, 0, 0, 0.02);
-  --openui-highlight-strong: rgba(0, 0, 0, 0.08);
-  --openui-inverted-background: #242424;
+  --openui-background: #1b1040;
+  --openui-foreground: rgba(255, 255, 255, 0.08);
+  --openui-sunk: rgba(255, 255, 255, 0.05);
+  --openui-highlight: rgba(255, 255, 255, 0.06);
+  --openui-highlight-subtle: rgba(255, 255, 255, 0.03);
+  --openui-highlight-strong: rgba(255, 255, 255, 0.1);
+  --openui-inverted-background: #ffffff;
 
   /* --- Text --- */
-  --openui-text-neutral-primary: #242424;
-  --openui-text-neutral-secondary: #5d5d5d;
-  --openui-text-neutral-tertiary: #6f6f6f;
-  --openui-text-accent-primary: #ffffff;
+  --openui-text-neutral-primary: #ffffff;
+  --openui-text-neutral-secondary: rgba(255, 255, 255, 0.75);
+  --openui-text-neutral-tertiary: rgba(255, 255, 255, 0.55);
+  --openui-text-accent-primary: #1b1040;
 
   /* --- Borders --- */
-  --openui-border-default: rgba(0, 0, 0, 0.06);
-  --openui-border-interactive: rgba(0, 0, 0, 0.12);
-  --openui-border-interactive-emphasis: rgba(0, 0, 0, 0.3);
-  --openui-border-interactive-selected: #242424;
-  --openui-border-accent: rgba(0, 0, 0, 0.08);
+  --openui-border-default: rgba(255, 255, 255, 0.08);
+  --openui-border-interactive: rgba(255, 255, 255, 0.15);
+  --openui-border-interactive-emphasis: rgba(255, 255, 255, 0.3);
+  --openui-border-interactive-selected: #ffffff;
+  --openui-border-accent: rgba(255, 255, 255, 0.1);
 
   /* --- Interactive / Accent --- */
-  --openui-interactive-accent-default: #242424;
-  --openui-interactive-accent-hover: rgba(36, 36, 36, 0.8);
-  --openui-interactive-accent-pressed: #242424;
-  --openui-interactive-accent-disabled: rgba(36, 36, 36, 0.4);
+  --openui-interactive-accent-default: #7b6fe6;
+  --openui-interactive-accent-hover: #9188ec;
+  --openui-interactive-accent-pressed: #6a5fd4;
+  --openui-interactive-accent-disabled: rgba(123, 111, 230, 0.4);
 
   /* --- Chat --- */
-  --openui-chat-user-response-bg: #242424;
+  --openui-chat-user-response-bg: rgba(255, 255, 255, 0.12);
   --openui-chat-user-response-text: #ffffff;
 
   /* --- Shadows --- */
-  --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.18);
-  --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.18);
-  --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.18);
-  --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.20);
-  --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.031), 0 12px 48px rgba(0, 0, 0, 0.239);
+  --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.4);
+  --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.4);
+  --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.4);
+  --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.5);
+  --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.06), 0 12px 48px rgba(0, 0, 0, 0.5);
 
   /* --- Radius --- */
-  --openui-radius-3xs: 1px;
-  --openui-radius-2xs: 2px;
+  --openui-radius-3xs: 2px;
+  --openui-radius-2xs: 3px;
   --openui-radius-xs: 4px;
   --openui-radius-s: 6px;
   --openui-radius-m: 8px;
-  --openui-radius-l: 10px;
-  --openui-radius-xl: 12px;
-  --openui-radius-2xl: 14px;
-  --openui-radius-3xl: 16px;
+  --openui-radius-l: 12px;
+  --openui-radius-xl: 16px;
+  --openui-radius-2xl: 20px;
+  --openui-radius-3xl: 24px;
   --openui-radius-full: 9999px;
 
   /* --- Spacing --- */
@@ -71,109 +67,81 @@
   --openui-space-2xl: 36px;
   --openui-space-000: 0px;
 
-  /* --- Typography (SF Pro system font stack) --- */
-  --openui-text-body-default: 400 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --openui-text-body-default-letter-spacing: -0.23px;
-  --openui-text-body-default-heavy: 600 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --openui-text-body-default-heavy-letter-spacing: -0.23px;
-  --openui-text-body-sm: 400 13px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --openui-text-body-sm-letter-spacing: -0.08px;
-  --openui-text-heading-xs: 600 17px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
-  --openui-text-heading-xs-letter-spacing: -0.43px;
-  --openui-text-heading-sm: 600 20px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
-  --openui-text-heading-sm-letter-spacing: -0.45px;
-  --openui-text-label-default: 600 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --openui-text-label-default-letter-spacing: -0.23px;
-  --openui-text-label-sm: 600 13px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  --openui-text-label-sm-letter-spacing: -0.08px;
+  /* --- Typography (Segoe UI → system) --- */
+  --openui-text-body-default: 400 14px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-body-default-letter-spacing: 0;
+  --openui-text-body-default-heavy: 600 14px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-body-default-heavy-letter-spacing: 0;
+  --openui-text-body-sm: 400 12px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-body-sm-letter-spacing: 0;
+  --openui-text-heading-xs: 600 16px/1.25 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-heading-xs-letter-spacing: 0;
+  --openui-text-heading-sm: 600 20px/1.25 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-heading-sm-letter-spacing: 0;
+  --openui-text-label-default: 600 14px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-label-default-letter-spacing: 0;
+  --openui-text-label-sm: 600 12px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --openui-text-label-sm-letter-spacing: 0;
 
   /* --- Status --- */
-  --openui-text-danger-primary: rgb(166, 33, 71);
-  --openui-text-success-primary: rgb(1, 112, 72);
-  --openui-text-info-primary: #242424;
-  --openui-text-alert-primary: rgb(169, 57, 1);
-  --openui-border-danger-emphasis: rgb(192, 45, 86);
-  --openui-border-success-emphasis: rgb(0, 132, 85);
-  --openui-border-info-emphasis: #242424;
-  --openui-border-alert-emphasis: rgb(187, 64, 1);
+  --openui-text-danger-primary: #ff8a8a;
+  --openui-text-success-primary: #6fdc8c;
+  --openui-text-info-primary: rgba(255, 255, 255, 0.85);
+  --openui-text-alert-primary: #ffb74d;
+  --openui-border-danger-emphasis: #ff6b6b;
+  --openui-border-success-emphasis: #42be65;
+  --openui-border-info-emphasis: rgba(255, 255, 255, 0.5);
+  --openui-border-alert-emphasis: #ff9800;
 }
 
-/* ============================================================
-   Dark Mode — media query
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --openui-background: #2e2e2e;
-    --openui-foreground: #242424;
-    --openui-inverted-background: #ffffff;
-
-    --openui-text-neutral-primary: #dedede;
-    --openui-text-neutral-secondary: #aeaeae;
-    --openui-text-neutral-tertiary: #929292;
-    --openui-text-accent-primary: #242424;
-
-    --openui-interactive-accent-default: #ffffff;
-    --openui-interactive-accent-hover: rgba(255, 255, 255, 0.8);
-    --openui-interactive-accent-pressed: #ffffff;
-    --openui-interactive-accent-disabled: rgba(255, 255, 255, 0.4);
-
-    --openui-chat-user-response-bg: #ffffff;
-    --openui-chat-user-response-text: #242424;
-
-    --openui-border-interactive-selected: #dedede;
-
-    --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.36);
-    --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.36);
-    --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.36);
-    --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.40);
-    --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.059), 0 12px 48px rgba(0, 0, 0, 0.478);
-
-    --openui-text-danger-primary: rgb(253, 142, 161);
-    --openui-text-success-primary: rgb(93, 206, 151);
-    --openui-text-info-primary: #dedede;
-    --openui-text-alert-primary: rgb(252, 149, 113);
-    --openui-border-danger-emphasis: rgb(229, 94, 122);
-    --openui-border-success-emphasis: rgb(5, 173, 114);
-    --openui-border-info-emphasis: #dedede;
-    --openui-border-alert-emphasis: rgb(229, 103, 56);
-  }
+/* Background gradient on body */
+body {
+  background: linear-gradient(160deg, #1b1040 0%, #2d1b69 35%, #1a237e 65%, #0d1b3e 100%) !important;
+  min-height: 100vh;
 }
 
-/* ============================================================
-   Dark Mode — .dark class (for manual toggle)
-   ============================================================ */
-.dark {
-  --openui-background: #2e2e2e;
-  --openui-foreground: #242424;
-  --openui-inverted-background: #ffffff;
+/* Override OpenUI shell background to transparent so gradient shows through */
+[data-openui-shell],
+[data-openui-chat],
+.openui-shell,
+.openui-chat {
+  background: transparent !important;
+}
 
-  --openui-text-neutral-primary: #dedede;
-  --openui-text-neutral-secondary: #aeaeae;
-  --openui-text-neutral-tertiary: #929292;
-  --openui-text-accent-primary: #242424;
+/* Conversation starter cards — M365 style */
+[data-openui-conversation-starter],
+.openui-conversation-starter {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(20px);
+  transition: background 0.15s ease;
+}
+[data-openui-conversation-starter]:hover,
+.openui-conversation-starter:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+}
 
-  --openui-interactive-accent-default: #ffffff;
-  --openui-interactive-accent-hover: rgba(255, 255, 255, 0.8);
-  --openui-interactive-accent-pressed: #ffffff;
-  --openui-interactive-accent-disabled: rgba(255, 255, 255, 0.4);
+/* Input bar — frosted glass */
+[data-openui-composer],
+.openui-composer,
+textarea[data-openui-input],
+.openui-input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 24px !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(20px);
+}
+[data-openui-composer]::placeholder,
+textarea[data-openui-input]::placeholder,
+.openui-input::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
 
-  --openui-chat-user-response-bg: #ffffff;
-  --openui-chat-user-response-text: #242424;
-
-  --openui-border-interactive-selected: #dedede;
-
-  --openui-shadow-s: 0 0.75px 3px rgba(0, 0, 0, 0.36);
-  --openui-shadow-m: 0 1.5px 6px rgba(0, 0, 0, 0.36);
-  --openui-shadow-l: 0 3px 12px rgba(0, 0, 0, 0.36);
-  --openui-shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.40);
-  --openui-shadow-2xl: 0 0 3px rgba(0, 0, 0, 0.059), 0 12px 48px rgba(0, 0, 0, 0.478);
-
-  --openui-text-danger-primary: rgb(253, 142, 161);
-  --openui-text-success-primary: rgb(93, 206, 151);
-  --openui-text-info-primary: #dedede;
-  --openui-text-alert-primary: rgb(252, 149, 113);
-  --openui-border-danger-emphasis: rgb(229, 94, 122);
-  --openui-border-success-emphasis: rgb(5, 173, 114);
-  --openui-border-info-emphasis: #dedede;
-  --openui-border-alert-emphasis: rgb(229, 103, 56);
+/* Assistant message cards */
+[data-openui-assistant-message] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
