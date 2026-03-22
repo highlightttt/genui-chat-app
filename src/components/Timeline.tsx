@@ -1,6 +1,6 @@
 "use client";
 import { defineComponent } from "@openuidev/react-lang";
-import { z } from "zod/v4";
+import { z } from "zod";
 import type { ReactNode } from "react";
 
 const TimelineEventSchema = z.object({
@@ -15,7 +15,7 @@ const TimelineSchema = z.object({
 
 type TimelineEvent = { marker: string; title: string; description?: string };
 
-export const Timeline = (defineComponent as any)({
+export const Timeline = defineComponent({
   name: "Timeline",
   props: TimelineSchema,
   description:

@@ -1,6 +1,6 @@
 "use client";
 import { defineComponent } from "@openuidev/react-lang";
-import { z } from "zod/v4";
+import { z } from "zod";
 import type { ReactNode } from "react";
 
 const PersonSchema = z.object({
@@ -94,7 +94,7 @@ function PersonCard({ person }: { person: Person }) {
   );
 }
 
-export const PeopleBlock = (defineComponent as any)({
+export const PeopleBlock = defineComponent({
   name: "PeopleBlock",
   props: PeopleBlockSchema,
   description:

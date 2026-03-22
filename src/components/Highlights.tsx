@@ -1,6 +1,6 @@
 "use client";
 import { defineComponent } from "@openuidev/react-lang";
-import { z } from "zod/v4";
+import { z } from "zod";
 import type { ReactNode } from "react";
 
 // --- Metric ---
@@ -11,7 +11,7 @@ const MetricSchema = z.object({
   detail: z.string().optional(),
 });
 
-export const Metric = (defineComponent as any)({
+export const Metric = defineComponent({
   name: "Metric",
   props: MetricSchema,
   description:
@@ -70,7 +70,7 @@ const PullQuoteSchema = z.object({
   quote: z.string(),
 });
 
-export const PullQuote = (defineComponent as any)({
+export const PullQuote = defineComponent({
   name: "PullQuote",
   props: PullQuoteSchema,
   description:
