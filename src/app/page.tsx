@@ -10,6 +10,7 @@ import {
 import { FullScreen } from "@openuidev/react-ui";
 import {
   openuiLibrary,
+  openuiExamples,
   openuiAdditionalRules,
 } from "@openuidev/react-ui/genui-lib";
 import { createLibrary } from "@openuidev/react-lang";
@@ -19,29 +20,11 @@ import { PeopleBlock } from "@/components/PeopleBlock";
 import { Metric, PullQuote } from "@/components/Highlights";
 import { Timeline } from "@/components/Timeline";
 
-// Cherry-pick OpenUI primitives
-const keep = ["Stack", "Separator", "Card", "CardHeader", "TextContent", "MarkDownRenderer", "Button", "Buttons"];
-const keptComponents = keep.map((name) => openuiLibrary.components[name]);
-
+// Extend OpenUI with custom Bebop components (keep ALL built-in components intact)
 const bebopLibrary = createLibrary({
   root: "Stack",
   componentGroups: [
-    {
-      name: "Layout",
-      components: ["Stack", "Separator"],
-      notes: [
-        'Stack is the root layout. direction "row" for horizontal, "column" (default) for vertical.',
-        "Use wrap=true for grid-like layouts.",
-      ],
-    },
-    {
-      name: "Content",
-      components: ["Card", "CardHeader", "TextContent", "MarkDownRenderer"],
-    },
-    {
-      name: "Buttons",
-      components: ["Button", "Buttons"],
-    },
+    ...(openuiLibrary.componentGroups ?? []),
     {
       name: "People",
       components: ["PeopleBlock"],
@@ -69,7 +52,9 @@ const bebopLibrary = createLibrary({
     },
   ],
   components: [
-    ...keptComponents,
+    // ALL original OpenUI components
+    ...Object.values(openuiLibrary.components),
+    // Custom Bebop components
     PeopleBlock,
     Metric,
     PullQuote,
@@ -79,6 +64,7 @@ const bebopLibrary = createLibrary({
 
 const systemPrompt = bebopLibrary.prompt({
   examples: [
+    ...openuiExamples,
     `Example — People block:
 root = Stack([heading, lead, designers])
 heading = TextContent("Design Team", "large-heavy")
