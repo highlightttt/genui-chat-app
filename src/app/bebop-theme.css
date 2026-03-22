@@ -166,6 +166,12 @@ body {
   font-size: 13px !important;
 }
 
+/* Hide the duplicate bottom conversation starters (outside welcome screen) */
+.openui-shell-thread-chat-panel > .openui-shell-conversation-starter,
+.openui-shell-thread-container > .openui-shell-conversation-starter:not(.openui-shell-welcome-screen__desktop-starters .openui-shell-conversation-starter) {
+  display: none !important;
+}
+
 textarea[data-openui-input],
 .openui-input {
   background: transparent !important;
