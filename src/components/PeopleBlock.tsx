@@ -27,8 +27,12 @@ type Person = z.infer<typeof PersonSchema>;
 
 function getAvatarUrl(name: string, providedUrl?: string, size = 128): string {
   if (providedUrl && !providedUrl.includes("undefined")) return providedUrl;
-  // Use DiceBear avatars as placeholders — deterministic by name
-  return `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundColor=e0e0e0&textColor=616161&fontSize=36&size=${size}`;
+  // Use randomuser.me portraits — deterministic by hashing name to a number 0-99
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = ((hash << 5) - hash + name.charCodeAt(i)) | 0;
+  const num = Math.abs(hash) % 100;
+  const gender = num % 2 === 0 ? "men" : "women";
+  return `https://randomuser.me/api/portraits/${gender}/${num}.jpg`;
 }
 
 function PersonBottomSheet({ person, onClose }: { person: Person; onClose: () => void }) {
