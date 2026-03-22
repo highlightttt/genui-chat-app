@@ -97,30 +97,7 @@ body {
   background: #ffffff !important;
 }
 
-/* Composer — M365 rounded input with subtle dashed border */
-[data-openui-composer],
-.openui-composer,
-.openui-shell-desktop-welcome-composer {
-  background: #ffffff !important;
-  border: 1.5px dashed rgba(0, 0, 0, 0.15) !important;
-  border-radius: 16px !important;
-  box-shadow: none !important;
-}
-[data-openui-composer]:focus-within,
-.openui-shell-desktop-welcome-composer:focus-within {
-  border-color: #6B4EE6 !important;
-  border-style: solid !important;
-}
-
-/* Thread composer also needs dashed border */
-.openui-shell-thread-composer__input-wrapper {
-  border: 1.5px dashed rgba(0, 0, 0, 0.15) !important;
-  border-radius: 16px !important;
-}
-.openui-shell-thread-composer__input-wrapper:focus-within {
-  border-color: #6B4EE6 !important;
-  border-style: solid !important;
-}
+/* Composer — M365 style handled by direct overrides below */
 
 /* Conversation starters — M365 3-column equal-height cards */
 .openui-shell-conversation-starter--short,
@@ -201,4 +178,33 @@ textarea[data-openui-input]::placeholder,
 /* Sidebar background */
 .openui-shell-sidebar-container {
   background: #ffffff !important;
+}
+
+/* Composer send button — round, blue (M365 style) */
+.openui-shell-thread-composer .openui-icon-button,
+.openui-shell-desktop-welcome-composer .openui-icon-button {
+  border-radius: 50% !important;
+  background-color: #4F52B2 !important;
+  color: #ffffff !important;
+  border: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  box-shadow: none !important;
+}
+.openui-shell-thread-composer .openui-icon-button:hover,
+.openui-shell-desktop-welcome-composer .openui-icon-button:hover {
+  background-color: #3F42A2 !important;
+}
+
+/* Composer input wrapper — M365 rounded card style */
+.openui-shell-thread-composer__input-wrapper,
+.openui-shell-desktop-welcome-composer {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+  border-style: solid !important;
+}
+.openui-shell-thread-composer__input-wrapper:focus-within,
+.openui-shell-desktop-welcome-composer:focus-within {
+  border-color: #4F52B2 !important;
 }
