@@ -19,6 +19,9 @@ import { createLibrary } from "@openuidev/react-lang";
 import { PeopleBlock } from "@/components/PeopleBlock";
 import { Metric, PullQuote } from "@/components/Highlights";
 import { Timeline } from "@/components/Timeline";
+import { FilesBlock } from "@/components/FilesBlock";
+import { EmailsBlock } from "@/components/EmailsBlock";
+import { MeetingsBlock } from "@/components/MeetingsBlock";
 
 // Extend OpenUI with custom Bebop components
 const bebopLibrary = createLibrary({
@@ -50,6 +53,36 @@ const bebopLibrary = createLibrary({
         "Each event has marker (year/date), title, and optional description.",
       ],
     },
+    {
+      name: "Files",
+      components: ["FilesBlock"],
+      notes: [
+        "FilesBlock: surfaces key files inline with icon, title, author, time, description.",
+        "fileType controls icon: word (blue W), excel (green X), powerpoint (orange P), pdf (red), generic (purple).",
+        "Click a file to see preview and actions.",
+        'sectionLabel adds header like "📁 Files".',
+      ],
+    },
+    {
+      name: "Emails",
+      components: ["EmailsBlock"],
+      notes: [
+        "EmailsBlock: surfaces key emails with sender avatar, subject, time, summary.",
+        "Intended for awareness and triage, not full email reading.",
+        "Set isRead=false for bold unread styling.",
+        'sectionLabel adds header like "📬 Top Emails".',
+      ],
+    },
+    {
+      name: "Meetings",
+      components: ["MeetingsBlock"],
+      notes: [
+        "MeetingsBlock: surfaces calendar meetings with blue bar, time, duration, title.",
+        "Set needsAction=true for Accept/Decline buttons.",
+        "prepNotes array adds preparation items shown in detail panel.",
+        'dateLabel adds header like "Tuesday, January 6".',
+      ],
+    },
   ],
   components: [
     ...Object.values(openuiLibrary.components),
@@ -57,6 +90,9 @@ const bebopLibrary = createLibrary({
     Metric,
     PullQuote,
     Timeline,
+    FilesBlock,
+    EmailsBlock,
+    MeetingsBlock,
   ],
 });
 
@@ -79,6 +115,19 @@ m2 = Metric("23%", "Annual UX Growth", "Driven by AI and generative design")`,
 root = Stack([title, tl])
 title = TextContent("Cloud Market Evolution", "large-heavy")
 tl = Timeline([TimelineEvent("2020", "Azure reaches ~20% share", "Doubling from mid-2010s"), TimelineEvent("2024", "Azure and Google grow 30%+", "AWS slows to ~19%"), TimelineEvent("2025", "Cloud spend hits $99B", "Azure solidifies #2 position")])`,
+    `Example — Files block:
+root = Stack([label, files])
+label = TextContent("📁 Files", "large-heavy")
+files = FilesBlock([File("Generative UX Terminology", "Elisa Nasen", "updated 2d ago", "A structured breakdown of GenUX concepts: Elevation levels (apps → fragments → components → design elements).", "word"), File("Reasoning Change Checklist", "Elisa Nasen", "updated 2d ago", "How reasoning outputs affect GenUX.", "word")], "📁 Files")`,
+    `Example — Emails block:
+root = Stack([label, emails])
+label = TextContent("📬 Top Emails", "large-heavy")
+emails = EmailsBlock([Email("If you can imagine it, just Vibe Code it!", "Zidong Chen", "Studio DC", "11:00 AM", "Studio DC announcement around vibe coding learnings, relevant to innovation threads.", false), Email("Re: Unified CoT | Week 11/17 update", "Hao Zhang (MSAI)", "", "11:00 AM", "Covers new feature releases, rollout tables, input & response UX.", true)], "📬 Top Emails")`,
+    `Example — Meetings block:
+root = Stack([date, meetings, prep])
+date = TextContent("Tuesday, January 6", "large-heavy")
+meetings = MeetingsBlock([Meeting("Weekly Spec Alignment", "10:00 AM", "30min", "Teams Meeting · PiPaJi Room", "Teams Meeting", true, []), Meeting("Orion Bug Bash", "11:15 AM", "45min", "Teams Meeting", "Teams Meeting", false, []), Meeting("Nebula UX Review", "2:05 PM", "55min", "Teams Meeting", "Teams Meeting", false, [])], "Tuesday, January 6")
+prep = TextContent("**Weekly Spec Alignment**\\n• Walk through user flow, component interactions\\n• Clarify rationale (discoverability vs. cognitive load)", "default")`,
   ],
   additionalRules: [
     ...openuiAdditionalRules,
